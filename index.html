@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vagas de Marketing nos EUA — em dólar | por Alvo</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:       #4A7C6F;
+    --sage-light: #7AAB9B;
+    --sage-pale:  #EAF2EF;
+    --sage-dark:  #2D5246;
+    --warm:       #E8DDD0;
+    --warm-deep:  #C4A882;
+    --warm-dark:  #7A6450;
+    --ink:        #1C2B26;
+    --off-white:  #FAF8F5;
+    --white:      #FFFFFF;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .label {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--sage);
+  }
+  .label-light { color: var(--sage-light); }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,248,245,0.93);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(28,43,38,0.07);
+  }
+  .nav-inner {
+    max-width: 1140px; margin: 0 auto;
+    padding: 22px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-word { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 300; color: var(--ink); letter-spacing: 0.04em; }
+  .nav-logo-tag {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--sage); border-left: 1px solid rgba(28,43,38,0.15);
+    padding-left: 10px; margin-left: 2px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 14px; color: var(--ink); text-decoration: none; opacity: 0.55; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .btn-nav {
+    background: var(--sage); color: var(--white) !important;
+    opacity: 1 !important; padding: 10px 22px; border-radius: 100px;
+    font-size: 13px !important; font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .btn-nav:hover { background: var(--sage-dark) !important; }
+
+  .nav-hamburger {
+    display: none; flex-direction: column; justify-content: center;
+    gap: 5px; width: 36px; height: 36px; cursor: pointer;
+    background: none; border: none; padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block; height: 1.5px; width: 100%;
+    background: var(--ink); border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+    transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .nav-drawer {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--off-white); z-index: 99;
+    flex-direction: column; padding: 100px 36px 48px; gap: 0;
+  }
+  .nav-drawer.open { display: flex; }
+  .nav-drawer a {
+    font-family: 'Fraunces', serif;
+    font-size: 32px; font-weight: 300; color: var(--ink);
+    text-decoration: none; padding: 16px 0;
+    border-bottom: 1px solid rgba(28,43,38,0.07);
+    display: block; opacity: 0.7; transition: opacity 0.2s;
+  }
+  .nav-drawer a:hover { opacity: 1; }
+  .nav-drawer-cta {
+    margin-top: 32px;
+    background: var(--sage) !important; color: var(--white) !important;
+    padding: 16px 28px !important; border-radius: 100px !important;
+    text-align: center !important; font-family: 'DM Sans', sans-serif !important;
+    font-size: 15px !important; font-weight: 500 !important;
+    border-bottom: none !important; opacity: 1 !important;
+  }
+
+  /* ── HERO ── */
+  .hero { background: var(--off-white); padding: 90px 0 100px; position: relative; overflow: hidden; }
+  .hero-blob {
+    position: absolute; right: -100px; top: -80px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, var(--sage-pale) 0%, transparent 65%);
+    opacity: 0.5; pointer-events: none;
+  }
+  .hero-blob-2 {
+    position: absolute; left: -80px; bottom: 0;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, #FBF5ED 0%, transparent 65%);
+    opacity: 0.5; pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 780px; margin: 0 auto; padding: 0 60px;
+    position: relative; z-index: 1; text-align: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--sage-pale); border: 1px solid rgba(74,124,111,0.18);
+    padding: 7px 16px; border-radius: 100px;
+    font-size: 12px; font-weight: 500;
+    color: var(--sage-dark); letter-spacing: 0.04em;
+    margin-bottom: 28px;
+  }
+  .eyebrow-dot { width: 6px; height: 6px; background: var(--sage); border-radius: 50%; }
+  .hero-headline {
+    font-family: 'Fraunces', serif;
+    font-size: 56px; font-weight: 300;
+    line-height: 1.1; color: var(--ink);
+    margin: 0 auto 24px; max-width: 640px;
+  }
+  .hero-headline em { font-style: italic; color: var(--sage); }
+  .hero-sub {
+    font-size: 18px; font-weight: 300;
+    line-height: 1.68; color: rgba(28,43,38,0.62);
+    max-width: 520px; margin: 0 auto 44px;
+  }
+  .hero-actions { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--sage); color: var(--white);
+    padding: 15px 30px; border-radius: 100px;
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--sage-dark); transform: translateY(-1px); }
+  .btn-ghost {
+    font-size: 14px; font-weight: 400; color: var(--ink);
+    text-decoration: none; opacity: 0.55;
+    display: inline-flex; align-items: center; gap: 6px; transition: opacity 0.2s;
+  }
+  .btn-ghost:hover { opacity: 1; }
+
+  /* ── FOUNDER / QUEM SOU EU — DARK ── */
+  .founder { background: var(--ink); padding: 110px 0; position: relative; overflow: hidden; }
+  .founder::before {
+    content: ''; position: absolute; top: -160px; right: -160px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,124,111,0.18) 0%, transparent 65%);
+  }
+  .founder::after {
+    content: ''; position: absolute; bottom: -100px; left: 100px;
+    width: 340px; height: 340px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,168,130,0.1) 0%, transparent 65%);
+  }
+  .founder-inner {
+    max-width: 1140px; margin: 0 auto; padding: 0 60px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .founder-headline {
+    font-family: 'Fraunces', serif;
+    font-size: 44px; font-weight: 300; line-height: 1.15; color: var(--off-white);
+    margin: 16px 0 0;
+  }
+  .founder-headline em { font-style: italic; color: var(--sage-light); }
+  .founder-body {
+    font-size: 17px; font-weight: 300; line-height: 1.72; color: rgba(250,248,245,0.6);
+  }
+  .founder-body p + p { margin-top: 20px; }
+  .founder-body a {
+    color: var(--sage-light); text-decoration: none;
+    border-bottom: 1px solid rgba(122,171,155,0.35); transition: border-color 0.2s;
+  }
+  .founder-body a:hover { border-color: var(--sage-light); }
+  .cred-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 32px; }
+  .cred {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 20px 16px;
+  }
+  .cred-val { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; color: var(--off-white); line-height: 1; margin-bottom: 6px; }
+  .cred-lbl { font-size: 12px; font-weight: 300; color: rgba(250,248,245,0.5); line-height: 1.4; }
+
+  /* ── PILARES — LIGHT (why-card pattern) ── */
+  .why { background: var(--off-white); padding: 120px 0; }
+  .why-inner { max-width: 1140px; margin: 0 auto; padding: 0 60px; }
+  .why-header {
+    display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 64px;
+  }
+  .why-headline {
+    font-family: 'Fraunces', serif; font-size: 46px; font-weight: 300;
+    line-height: 1.15; color: var(--ink); max-width: 440px;
+  }
+  .why-headline em { font-style: italic; color: var(--sage); }
+  .why-intro {
+    font-size: 16px; font-weight: 300; line-height: 1.65;
+    color: rgba(28,43,38,0.55); max-width: 340px;
+  }
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .why-card {
+    background: var(--white); border-radius: 20px; padding: 32px 28px;
+    border: 1px solid rgba(28,43,38,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .why-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(28,43,38,0.08); }
+  .why-icon {
+    width: 48px; height: 48px; background: var(--sage-pale); border-radius: 14px;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
+  }
+  .why-card-title {
+    font-family: 'Fraunces', serif; font-size: 19px; font-weight: 400;
+    color: var(--ink); margin-bottom: 12px; line-height: 1.3;
+  }
+  .why-card-body { font-size: 14px; font-weight: 300; line-height: 1.7; color: rgba(28,43,38,0.58); }
+
+  /* ── CTA — DARK ── */
+  .cta-section { background: var(--ink); padding: 120px 0; position: relative; overflow: hidden; }
+  .cta-section::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,124,111,0.15) 0%, transparent 65%);
+  }
+  .cta-inner {
+    max-width: 640px; margin: 0 auto; padding: 0 60px;
+    text-align: center; position: relative; z-index: 1;
+  }
+  .cta-headline {
+    font-family: 'Fraunces', serif; font-size: 46px; font-weight: 300;
+    line-height: 1.15; color: var(--off-white); margin: 16px 0 20px;
+  }
+  .cta-headline em { font-style: italic; color: var(--sage-light); }
+  .cta-sub {
+    font-size: 17px; font-weight: 300; line-height: 1.65;
+    color: rgba(250,248,245,0.55); margin-bottom: 40px;
+  }
+  .social-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .btn-social {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 28px; border-radius: 100px;
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    transition: transform 0.15s, background 0.2s, border-color 0.2s;
+  }
+  .btn-social svg { flex-shrink: 0; }
+  .btn-ig {
+    background: var(--off-white); color: var(--ink);
+  }
+  .btn-ig:hover { background: var(--warm); transform: translateY(-1px); }
+  .btn-li {
+    background: transparent; color: var(--off-white);
+    border: 1px solid rgba(250,248,245,0.25);
+  }
+  .btn-li:hover { border-color: var(--sage-light); transform: translateY(-1px); }
+  .cta-note { margin-top: 24px; font-size: 12px; color: rgba(250,248,245,0.3); letter-spacing: 0.05em; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 48px 0; }
+  .footer-inner {
+    max-width: 1140px; margin: 0 auto; padding: 0 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-logo-word { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 300; color: var(--off-white); letter-spacing: 0.04em; opacity: 0.7; }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-size: 13px; color: rgba(250,248,245,0.35); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(250,248,245,0.7); }
+  .footer-copy { font-size: 12px; color: rgba(250,248,245,0.2); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-eyebrow  { animation: fadeUp 0.6s ease 0.0s both; }
+  .hero-headline { animation: fadeUp 0.6s ease 0.1s both; }
+  .hero-sub      { animation: fadeUp 0.6s ease 0.2s both; }
+  .hero-actions  { animation: fadeUp 0.6s ease 0.3s both; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .why-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-inner { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    .hero { padding: 56px 0 64px; }
+    .hero-inner { padding: 0 24px; }
+    .hero-headline { font-size: 36px; }
+    .hero-sub { font-size: 16px; }
+    .hero-blob, .hero-blob-2 { display: none; }
+
+    .founder { padding: 72px 0; }
+    .founder-inner { grid-template-columns: 1fr; padding: 0 24px; gap: 32px; }
+    .founder-headline { font-size: 32px; }
+    .cred-grid { grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+    .why { padding: 72px 0; }
+    .why-inner { padding: 0 24px; }
+    .why-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .why-headline { font-size: 32px; }
+    .why-grid { grid-template-columns: 1fr; gap: 16px; }
+
+    .cta-section { padding: 72px 0; }
+    .cta-inner { padding: 0 24px; }
+    .cta-headline { font-size: 32px; }
+    .social-actions { flex-direction: column; }
+    .btn-social { width: 100%; justify-content: center; }
+
+    footer { padding: 32px 0; }
+    .footer-inner { padding: 0 24px; flex-direction: column; gap: 20px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+  }
+  @media (max-width: 480px) {
+    .hero-headline { font-size: 30px; }
+    .cred-val { font-size: 24px; }
+    .founder-headline { font-size: 28px; }
+    .why-headline { font-size: 28px; }
+    .cta-headline { font-size: 28px; }
+  }
+</style>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alvo">
+<meta property="og:title" content="Vagas de marketing nos EUA — ganhando em dólar">
+<meta property="og:description" content="Conteúdo gratuito sobre como conseguir vagas remotas de marketing digital nos EUA e ganhar em dólar, morando no Brasil.">
+<meta property="og:url" content="https://vagas-marketing.alvo.agency">
+<meta name="description" content="Conteúdo gratuito sobre como conseguir vagas remotas de marketing digital nos EUA e ganhar em dólar, morando no Brasil. Por Rodrigo Kato, fundador da Alvo.">
+<link rel="canonical" href="https://vagas-marketing.alvo.agency/">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://alvo.agency" class="nav-logo">
+      <svg width="24" height="24" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" stroke="#4A7C6F" stroke-width="1.5" fill="none"/>
+        <circle cx="24" cy="24" r="6" fill="#2D5246"/>
+        <line x1="24" y1="4" x2="24" y2="14" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="24" y1="34" x2="24" y2="44" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="4" y1="24" x2="14" y2="24" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="34" y1="24" x2="44" y2="24" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="nav-logo-word">alvo</span>
+      <span class="nav-logo-tag">Vagas em Dólar</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#quem-sou">Quem sou eu</a></li>
+      <li><a href="#pilares">O conteúdo</a></li>
+      <li><a href="https://alvo.agency" target="_blank" rel="noopener">Alvo Agency ↗</a></li>
+      <li><a href="#seguir" class="btn-nav">Seguir</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="nav-drawer">
+  <a href="#quem-sou" onclick="toggleNav()">Quem sou eu</a>
+  <a href="#pilares" onclick="toggleNav()">O conteúdo</a>
+  <a href="https://alvo.agency" target="_blank" rel="noopener">Alvo Agency ↗</a>
+  <a href="#seguir" class="nav-drawer-cta" onclick="toggleNav()">Seguir →</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob-2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Gratuito · Marketing remoto em dólar
+    </div>
+    <h1 class="hero-headline">
+      Vagas de marketing digital nos EUA.<br>
+      Morando no Brasil, <em>ganhando em dólar.</em>
+    </h1>
+    <p class="hero-sub">
+      Onde estão as vagas remotas, como se posicionar pro mercado americano e o inglês que
+      realmente derruba você numa entrevista. Conteúdo gratuito, sem enrolação — de quem
+      trabalha em inglês todo dia.
+    </p>
+    <div class="hero-actions">
+      <a href="#seguir" class="btn-primary">
+        Seguir pelo conteúdo
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#pilares" class="btn-ghost">
+        Ver os temas
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="#1C2B26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ QUEM SOU EU — DARK ══ -->
+<section class="founder" id="quem-sou">
+  <div class="founder-inner">
+    <div class="reveal">
+      <div class="label label-light">Quem tá falando</div>
+      <h2 class="founder-headline">
+        Não é teoria.<br>
+        É o caminho que <em>eu fiz.</em>
+      </h2>
+      <div class="cred-grid">
+        <div class="cred">
+          <div class="cred-val">6 anos</div>
+          <div class="cred-lbl">de marketing digital</div>
+        </div>
+        <div class="cred">
+          <div class="cred-val">4 anos</div>
+          <div class="cred-lbl">trabalhando em inglês</div>
+        </div>
+        <div class="cred">
+          <div class="cred-val">Alvo</div>
+          <div class="cred-lbl">agência própria, fundador</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:0.1s">
+      <div class="founder-body">
+        <p>Sou o Rodrigo. Trabalho com marketing digital há 6 anos e os últimos 4 foram inteiros em inglês — reuniões, relatórios, negociação, o dia a dia com times e clientes fora do Brasil.</p>
+        <p>Nesse caminho eu fundei a <a href="https://alvo.agency" target="_blank" rel="noopener">Alvo</a>, minha própria agência de Google Ads pra eCommerce europeu. Ou seja: passei por conseguir o trabalho, entregar em inglês e construir algo em cima disso.</p>
+        <p>Aqui eu abro esse processo. Sem curso, sem venda — por enquanto é só conteúdo gratuito no Instagram e no LinkedIn pra quem quer o mesmo: uma vaga remota de marketing lá fora, pagando em dólar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PILARES DE CONTEÚDO — LIGHT ══ -->
+<section class="why" id="pilares">
+  <div class="why-inner">
+    <div class="why-header reveal">
+      <div>
+        <div class="label" style="margin-bottom:16px;">O que eu posto</div>
+        <h2 class="why-headline">
+          Quatro frentes,<br>
+          <em>um objetivo.</em>
+        </h2>
+      </div>
+      <p class="why-intro">
+        Tudo que você precisa pra sair de "queria trabalhar lá fora" pra "estou trabalhando lá fora" — dividido em quatro temas que se repetem no conteúdo.
+      </p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A7C6F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16" y1="16" x2="21" y2="21"/></svg></div>
+        <div class="why-card-title">Onde estão as vagas</div>
+        <p class="why-card-body">Os job boards e as empresas remote-first que realmente contratam gente na América Latina — e como filtrar as vagas que aceitam quem mora fora dos EUA.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.08s">
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A7C6F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg></div>
+        <div class="why-card-title">Como se posicionar</div>
+        <p class="why-card-body">Currículo, portfólio e LinkedIn no padrão que recrutador americano espera. O que destacar, o que cortar e como traduzir sua experiência brasileira sem ela parecer "menor".</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.16s">
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A7C6F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 3z"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="12.5" x2="13" y2="12.5"/></svg></div>
+        <div class="why-card-title">Inglês de entrevista</div>
+        <p class="why-card-body">Não é inglês genérico: é o inglês de reunião de marketing e de entrevista. As frases, os termos e a postura que passam confiança quando a vaga está em jogo.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.24s">
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A7C6F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v9M14.2 9.3c-.5-.9-1.4-1.3-2.4-1.3-1.4 0-2.3.8-2.3 1.9 0 2.6 5 1.4 5 4 0 1.2-1 2-2.6 2-1.1 0-2.1-.5-2.6-1.4"/></svg></div>
+        <div class="why-card-title">Ganhar em dólar</div>
+        <p class="why-card-body">Como funciona ser contratado de fora, formas de receber, o básico de impostos como PJ e — de forma realista — quanto dá pra ganhar em cada nível de senioridade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA / SEGUIR — DARK ══ -->
+<section class="cta-section" id="seguir">
+  <div class="cta-inner reveal">
+    <div class="label label-light">De graça, começa aqui</div>
+    <h2 class="cta-headline">
+      Nada pra comprar.<br>
+      Só me <em>seguir.</em>
+    </h2>
+    <p class="cta-sub">
+      Ainda não tem curso nem produto — essa fase é 100% conteúdo. Me segue no Instagram e no
+      LinkedIn e acompanha, post a post, como conseguir uma vaga de marketing lá fora ganhando em dólar.
+    </p>
+    <div class="social-actions">
+      <!-- TODO: trocar href="#" pela URL real do Instagram -->
+      <a href="#" class="btn-social btn-ig" data-todo="instagram-url">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C2B26" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="#1C2B26" stroke="none"/></svg>
+        Seguir no Instagram
+      </a>
+      <!-- TODO: trocar href="#" pela URL real do LinkedIn -->
+      <a href="#" class="btn-social btn-li" data-todo="linkedin-url">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAF8F5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="7" y1="10" x2="7" y2="17"/><circle cx="7" cy="6.8" r="0.6" fill="#FAF8F5" stroke="none"/><path d="M11 17v-4a2.5 2.5 0 0 1 5 0v4M11 10v7"/></svg>
+        Seguir no LinkedIn
+      </a>
+    </div>
+    <p class="cta-note">Fase de conteúdo · Sem venda, sem captura de e-mail</p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <svg width="22" height="22" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" stroke="#7AAB9B" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <circle cx="24" cy="24" r="6" fill="#4A7C6F" opacity="0.7"/>
+        <line x1="24" y1="4"  x2="24" y2="14" stroke="#7AAB9B" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line x1="24" y1="34" x2="24" y2="44" stroke="#7AAB9B" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line x1="4"  y1="24" x2="14" y2="24" stroke="#7AAB9B" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line x1="34" y1="24" x2="44" y2="24" stroke="#7AAB9B" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      <span class="footer-logo-word">alvo</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#quem-sou">Quem sou eu</a></li>
+      <li><a href="#pilares">O conteúdo</a></li>
+      <li><a href="https://alvo.agency" target="_blank" rel="noopener">Alvo Agency</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Alvo. Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Mobile nav
+  function toggleNav() {
+    const btn = document.getElementById('nav-hamburger');
+    const drawer = document.getElementById('nav-drawer');
+    btn.classList.toggle('open');
+    drawer.classList.toggle('open');
+    document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.getElementById('nav-hamburger').classList.remove('open');
+      document.getElementById('nav-drawer').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+</body>
+</html>
