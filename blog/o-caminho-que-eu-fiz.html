@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De agência no Brasil a trabalhar em dólar: o caminho que eu fiz | Alvo</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:#4A7C6F; --sage-light:#7AAB9B; --sage-pale:#EAF2EF; --sage-dark:#2D5246;
+    --warm:#E8DDD0; --warm-deep:#C4A882; --warm-dark:#7A6450;
+    --ink:#1C2B26; --off-white:#FAF8F5; --white:#FFFFFF;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; background:var(--off-white); color:var(--ink); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .label { font-size:11px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--sage); }
+
+  /* NAV */
+  nav { position:sticky; top:0; z-index:100; background:rgba(250,248,245,0.93); backdrop-filter:blur(12px); border-bottom:1px solid rgba(28,43,38,0.07); }
+  .nav-inner { max-width:1140px; margin:0 auto; padding:22px 60px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .nav-logo-word { font-family:'Fraunces',serif; font-size:22px; font-weight:300; color:var(--ink); letter-spacing:0.04em; }
+  .nav-logo-tag { font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage); border-left:1px solid rgba(28,43,38,0.15); padding-left:10px; margin-left:2px; }
+  .nav-links { display:flex; align-items:center; gap:36px; list-style:none; }
+  .nav-links a { font-size:14px; color:var(--ink); text-decoration:none; opacity:0.55; transition:opacity 0.2s; }
+  .nav-links a:hover { opacity:1; }
+  .btn-nav { background:var(--sage); color:var(--white) !important; opacity:1 !important; padding:10px 22px; border-radius:100px; font-size:13px !important; font-weight:500 !important; transition:background 0.2s !important; }
+  .btn-nav:hover { background:var(--sage-dark) !important; }
+  .nav-hamburger { display:none; flex-direction:column; justify-content:center; gap:5px; width:36px; height:36px; cursor:pointer; background:none; border:none; padding:4px; }
+  .nav-hamburger span { display:block; height:1.5px; width:100%; background:var(--ink); border-radius:2px; transition:transform 0.25s ease, opacity 0.2s ease; transform-origin:center; }
+  .nav-hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity:0; }
+  .nav-hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+  .nav-drawer { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:var(--off-white); z-index:99; flex-direction:column; padding:100px 36px 48px; }
+  .nav-drawer.open { display:flex; }
+  .nav-drawer a { font-family:'Fraunces',serif; font-size:32px; font-weight:300; color:var(--ink); text-decoration:none; padding:16px 0; border-bottom:1px solid rgba(28,43,38,0.07); display:block; opacity:0.7; }
+  .nav-drawer-cta { margin-top:32px; background:var(--sage) !important; color:var(--white) !important; padding:16px 28px !important; border-radius:100px !important; text-align:center !important; font-family:'DM Sans',sans-serif !important; font-size:15px !important; font-weight:500 !important; border-bottom:none !important; opacity:1 !important; }
+
+  /* ARTICLE */
+  .article { max-width:680px; margin:0 auto; padding:0 32px; }
+  .back { display:inline-flex; align-items:center; gap:7px; margin-top:36px; font-size:13px; font-weight:500; color:var(--sage); text-decoration:none; }
+  .back:hover { color:var(--sage-dark); }
+  .art-head { padding:24px 0 8px; }
+  .art-cat { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage); }
+  .art-title { font-family:'Fraunces',serif; font-size:42px; font-weight:300; line-height:1.12; margin:16px 0 18px; text-wrap:balance; }
+  .art-title em { font-style:italic; color:var(--sage); }
+  .art-meta { font-size:13px; color:rgba(28,43,38,0.5); display:flex; gap:14px; align-items:center; padding-bottom:24px; border-bottom:1px solid rgba(28,43,38,0.1); }
+
+  .prose { padding:32px 0 8px; }
+  .prose p { font-size:17.5px; font-weight:300; line-height:1.75; color:rgba(28,43,38,0.85); margin-bottom:22px; }
+  .prose h2 { font-family:'Fraunces',serif; font-size:27px; font-weight:400; line-height:1.2; margin:44px 0 16px; text-wrap:balance; }
+  .prose h2 em { font-style:italic; color:var(--sage); }
+  .prose strong { font-weight:500; color:var(--ink); }
+  .prose ol, .prose ul { margin:0 0 22px 0; padding-left:0; list-style:none; }
+  .prose ol li { position:relative; padding:0 0 16px 44px; font-size:17px; font-weight:300; line-height:1.7; color:rgba(28,43,38,0.85); counter-increment:step; }
+  .prose ol { counter-reset:step; }
+  .prose ol li::before { content:counter(step); position:absolute; left:0; top:0; width:30px; height:30px; border-radius:50%; background:var(--sage-pale); color:var(--sage-dark); font-family:'Fraunces',serif; font-size:15px; display:flex; align-items:center; justify-content:center; }
+  .prose ol li strong { display:block; margin-bottom:2px; }
+  .pullquote { font-family:'Fraunces',serif; font-style:italic; font-size:24px; font-weight:300; line-height:1.4; color:var(--sage-dark); border-left:3px solid var(--sage); padding:6px 0 6px 24px; margin:32px 0; }
+  .prose a.inline { color:var(--sage); text-decoration:none; border-bottom:1px solid rgba(74,124,111,0.3); }
+  .prose a.inline:hover { border-color:var(--sage); }
+
+  /* Email isca */
+  .isca { background:var(--white); border:1px solid rgba(28,43,38,0.1); border-radius:18px; padding:28px 30px; margin:36px 0; }
+  .isca-k { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage); margin-bottom:8px; }
+  .isca-t { font-family:'Fraunces',serif; font-size:20px; font-weight:400; margin-bottom:14px; }
+  .isca-form { display:flex; gap:10px; }
+  .isca-input { flex:1; background:var(--off-white); border:1px solid rgba(28,43,38,0.15); border-radius:100px; padding:13px 20px; font-size:14px; color:var(--ink); font-family:'DM Sans',sans-serif; outline:none; transition:border-color 0.2s; }
+  .isca-input:focus { border-color:var(--sage); }
+  .isca-btn { background:var(--sage); color:var(--white); padding:13px 22px; border-radius:100px; font-size:14px; font-weight:500; border:none; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .isca-btn:hover { background:var(--sage-dark); }
+  .isca-note { font-size:12px; color:rgba(28,43,38,0.45); margin-top:12px; }
+  .isca-ok { display:none; font-size:14px; color:var(--sage-dark); font-weight:500; }
+  .isca-ok.show { display:block; }
+
+  /* End CTA */
+  .endcta { background:var(--ink); border-radius:20px; padding:40px 36px; margin:44px 0 8px; text-align:center; }
+  .endcta h3 { font-family:'Fraunces',serif; font-size:26px; font-weight:300; color:var(--off-white); line-height:1.2; margin-bottom:10px; }
+  .endcta h3 em { font-style:italic; color:var(--sage-light); }
+  .endcta p { font-size:15px; font-weight:300; color:rgba(250,248,245,0.6); margin-bottom:22px; max-width:440px; margin-left:auto; margin-right:auto; }
+  .btn-light { background:var(--off-white); color:var(--ink); padding:14px 28px; border-radius:100px; font-size:14px; font-weight:500; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:background 0.2s; }
+  .btn-light:hover { background:var(--warm); }
+
+  footer { background:var(--ink); border-top:1px solid rgba(255,255,255,0.06); padding:40px 0; margin-top:60px; }
+  .footer-inner { max-width:1140px; margin:0 auto; padding:0 60px; display:flex; align-items:center; justify-content:space-between; }
+  .footer-logo-word { font-family:'Fraunces',serif; font-size:20px; font-weight:300; color:var(--off-white); opacity:0.7; }
+  .footer-links { display:flex; gap:28px; list-style:none; }
+  .footer-links a { font-size:13px; color:rgba(250,248,245,0.35); text-decoration:none; }
+  .footer-links a:hover { color:rgba(250,248,245,0.7); }
+
+  @media (max-width:768px) {
+    .nav-inner { padding:16px 24px; }
+    .nav-links { display:none; }
+    .nav-hamburger { display:flex; }
+    .art-title { font-size:32px; }
+    .prose p { font-size:16.5px; }
+    .isca-form { flex-direction:column; }
+    .isca-input, .isca-btn { width:100%; border-radius:12px; }
+    .footer-inner { padding:0 24px; flex-direction:column; gap:16px; text-align:center; }
+  }
+</style>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="description" content="A história real por trás da Alvo Vagas em Dólar: como saí de marketing em reais pra trabalhar remoto e em inglês com times de fora — e por que o gargalo quase nunca é competência.">
+<meta property="og:title" content="De agência no Brasil a trabalhar em dólar: o caminho que eu fiz">
+<meta property="og:description" content="A história real por trás dessa página — e por que o gargalo pra trabalhar no exterior quase nunca é competência.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://vagas-marketing.alvo.agency/blog/o-caminho-que-eu-fiz.html">
+<meta property="og:image" content="https://vagas-marketing.alvo.agency/og-image.png">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../" class="nav-logo">
+      <svg width="24" height="24" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" stroke="#4A7C6F" stroke-width="1.5" fill="none"/>
+        <circle cx="24" cy="24" r="6" fill="#2D5246"/>
+        <line x1="24" y1="4" x2="24" y2="14" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="24" y1="34" x2="24" y2="44" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="4" y1="24" x2="14" y2="24" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="34" y1="24" x2="44" y2="24" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="nav-logo-word">alvo</span>
+      <span class="nav-logo-tag">Blog</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="./">Todos os posts</a></li>
+      <li><a href="../#quem-sou">Quem sou eu</a></li>
+      <li><a href="../#curso" class="btn-nav">Entrar na lista</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-drawer" id="nav-drawer">
+  <a href="./">Todos os posts</a>
+  <a href="../#quem-sou">Quem sou eu</a>
+  <a href="../#curso" class="nav-drawer-cta">Entrar na lista →</a>
+</div>
+
+<article>
+  <div class="article">
+    <a href="./" class="back">← Todos os posts</a>
+    <div class="art-head">
+      <span class="art-cat">Prova &amp; bastidores</span>
+      <h1 class="art-title">De agência no Brasil a trabalhar em dólar: <em>o caminho que eu fiz</em></h1>
+      <div class="art-meta"><span>por Rodrigo Kato</span><span>·</span><span>7 min de leitura</span></div>
+    </div>
+
+    <div class="prose">
+      <p>Alguns anos atrás, eu fazia marketing ganhando em real e achava que trabalhar pra fora era coisa de dev ou de quem morou anos nos EUA. Não sou nenhum dos dois. Hoje trabalho remoto, em inglês, com times e clientes fora do Brasil — e não foi sorte nem talento raro. Foi um caminho, e é um caminho que dá pra repetir.</p>
+      <p>Esse post é a história por trás dessa página. Escrevi ele primeiro porque, antes de qualquer tática de vaga ou de currículo, tem uma crença que precisa cair.</p>
+
+      <h2>O erro que trava <em>quase todo mundo</em></h2>
+      <p>A maioria das pessoas boas de marketing e growth que eu conheço no Brasil não tenta uma vaga lá fora por causa de três mentiras que a gente conta pra si mesmo:</p>
+      <p><strong>"Meu inglês não é bom o suficiente."</strong> Você não precisa soar como nativo. Precisa conseguir conduzir uma entrevista e uma reunião de marketing com clareza. É específico, é treinável, e é bem menos do que você imagina.</p>
+      <p><strong>"Preciso morar fora."</strong> Não precisa. Empresas remote-first contratam gente na América Latina justamente porque é bom pra elas. Você pode ganhar em dólar morando no Brasil.</p>
+      <p><strong>"Isso é pra dev."</strong> Tech puxou a fila, mas marketing e growth entraram forte. A diferença é que quase ninguém te ensina a se posicionar pra esse mercado.</p>
+      <div class="pullquote">O gargalo raramente é competência. É posicionamento e confiança no inglês — e os dois se resolvem.</div>
+
+      <h2>O caminho, na ordem em que <em>fez diferença</em></h2>
+      <p>Olhando pra trás, foi mais ou menos isto — e é a mesma ordem que eu recomendaria hoje:</p>
+      <ol>
+        <li><strong>Tratei o inglês como ferramenta de trabalho, não como prova de escola.</strong> Parei de estudar inglês "em geral" e comecei a treinar o inglês que eu ia usar: reunião, entrevista, falar de resultado. Foco no que dá medo, não no que é confortável.</li>
+        <li><strong>Reposicionei meu perfil pro que o mercado lá fora entende.</strong> Currículo, LinkedIn e a forma de contar o que eu fazia — no padrão que um recrutador de fora reconhece. Mesma experiência, outra embalagem.</li>
+        <li><strong>Fui atrás das vagas certas.</strong> Não é sair aplicando em tudo. É saber onde ficam as vagas remote-first que aceitam quem mora no Brasil, e filtrar as que só dizem "remote" no título.</li>
+        <li><strong>Tratei a entrevista como algo pra treinar, não pra improvisar.</strong> As perguntas se repetem. As histórias de resultado dá pra preparar. A pressão some quando você já ensaiou.</li>
+        <li><strong>Encarei a parte chata: contrato e dinheiro.</strong> Como a empresa te contrata (contractor, EOR), como você recebe, o básico de PJ e imposto. Nada glamouroso — mas é o que faz o dólar cair na conta sem susto.</li>
+      </ol>
+
+      <h2>O bastidor</h2>
+      <p>No meio desse caminho eu fundei a <a class="inline" href="https://alvo.agency" target="_blank" rel="noopener">Alvo</a>, minha própria agência de Google Ads pra eCommerce na Europa. Ou seja: passei pelos dois lados — consegui trabalhar remoto e em inglês, e depois construí algo em cima disso. Cada passo da lista acima eu vivi na prática, errando bastante antes de acertar.</p>
+      <p>É exatamente por isso que essa página existe. O que pra mim demorou anos de tentativa e erro, dá pra encurtar muito quando alguém te mostra a ordem certa.</p>
+
+      <h2>O que isso tem a ver <em>com você</em></h2>
+      <p>Se você já entrega bem em marketing ou growth aqui no Brasil, você provavelmente já tem a competência. O que falta é traduzir isso pro mercado lá fora e ganhar a confiança de fazer em inglês. É disso que os próximos posts vão tratar — um pedaço de cada vez.</p>
+
+      <div class="isca">
+        <div class="isca-k">Comece por aqui</div>
+        <div class="isca-t">Receba os próximos posts (e o aviso do curso) por e-mail</div>
+        <form class="isca-form" id="isca-form" novalidate>
+          <input type="email" class="isca-input" id="isca-email" placeholder="seu@email.com" autocomplete="email" required />
+          <button type="submit" class="isca-btn" id="isca-btn">Quero receber</button>
+        </form>
+        <p class="isca-note" id="isca-note">Sem spam. Só os posts e o aviso quando o curso/mentoria abrir.</p>
+        <p class="isca-ok" id="isca-ok">Pronto — você está na lista. 🎯</p>
+      </div>
+
+      <h2>Falando em inglês de entrevista</h2>
+      <p>Se o que mais te trava é a parte de <em>falar</em>, eu estou montando um treino de conversação em inglês focado só em entrevista e reunião de marketing e dados. Dá pra entrar na lista de espera separada aqui: <a class="inline" href="https://learn-english.alvo.agency" target="_blank" rel="noopener">learn-english.alvo.agency</a>.</p>
+
+      <div class="endcta">
+        <h3>Quer fazer esse caminho <em>comigo junto?</em></h3>
+        <p>O curso e a mentoria vêm depois dos posts: revisão de perfil, mock interviews em inglês e acompanhamento até a oferta. Entre na lista e seja avisado no lançamento.</p>
+        <a href="../#curso" class="btn-light">
+          Entrar na lista do curso
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="#1C2B26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo-word">alvo</span>
+    <ul class="footer-links">
+      <li><a href="./">Blog</a></li>
+      <li><a href="../#quem-sou">Quem sou eu</a></li>
+      <li><a href="../#curso">Curso &amp; mentoria</a></li>
+      <li><a href="https://alvo.agency" target="_blank" rel="noopener">Alvo Agency</a></li>
+    </ul>
+    <span style="font-size:12px;color:rgba(250,248,245,0.2);">© 2026 Alvo.</span>
+  </div>
+</footer>
+
+<script>
+  function toggleNav() {
+    document.getElementById('nav-hamburger').classList.toggle('open');
+    document.getElementById('nav-drawer').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('nav-drawer').classList.contains('open') ? 'hidden' : '';
+  }
+
+  // Isca de e-mail — Formspree (mesmo endpoint da waitlist do curso).
+  // Cole o endpoint em COURSE_FORMSPREE_ENDPOINT (igual ao da home). Placeholder = modo preview.
+  const COURSE_FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  const iForm = document.getElementById('isca-form');
+  const iEmail = document.getElementById('isca-email');
+  const iBtn = document.getElementById('isca-btn');
+  const iNote = document.getElementById('isca-note');
+  const iOk = document.getElementById('isca-ok');
+  function iscaDone() { iForm.style.display='none'; iNote.style.display='none'; iOk.classList.add('show'); }
+  iForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const email = iEmail.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { iEmail.style.borderColor='#C0544A'; return; }
+    iEmail.style.borderColor='';
+    if (COURSE_FORMSPREE_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) { console.warn('[isca] endpoint não configurado — nada enviado.'); iscaDone(); return; }
+    iBtn.disabled=true; iBtn.textContent='Enviando…';
+    try {
+      const res = await fetch(COURSE_FORMSPREE_ENDPOINT, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify({ email:email, source:'vagas-marketing.alvo.agency/blog', list:'Vagas Curso/Mentoria — Waitlist' }) });
+      if (res.ok) { iscaDone(); } else { throw new Error('HTTP '+res.status); }
+    } catch(err) { console.error('[isca] falha:', err); iBtn.disabled=false; iBtn.textContent='Quero receber'; iNote.textContent='Algo deu errado. Tente de novo.'; }
+  });
+</script>
+</body>
+</html>
