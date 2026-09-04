@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>"Remote" que não é remote: como filtrar vagas que aceitam quem mora no Brasil | Alvo</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:#4A7C6F; --sage-light:#7AAB9B; --sage-pale:#EAF2EF; --sage-dark:#2D5246;
+    --warm:#E8DDD0; --warm-deep:#C4A882; --warm-dark:#7A6450;
+    --ink:#1C2B26; --off-white:#FAF8F5; --white:#FFFFFF; --red:#C0544A;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; background:var(--off-white); color:var(--ink); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .label { font-size:11px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--sage); }
+
+  /* NAV */
+  nav { position:sticky; top:0; z-index:100; background:rgba(250,248,245,0.93); backdrop-filter:blur(12px); border-bottom:1px solid rgba(28,43,38,0.07); }
+  .nav-inner { max-width:1140px; margin:0 auto; padding:22px 60px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .nav-logo-word { font-family:'Fraunces',serif; font-size:22px; font-weight:300; color:var(--ink); letter-spacing:0.04em; }
+  .nav-logo-tag { font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage); border-left:1px solid rgba(28,43,38,0.15); padding-left:10px; margin-left:2px; }
+  .nav-links { display:flex; align-items:center; gap:36px; list-style:none; }
+  .nav-links a { font-size:14px; color:var(--ink); text-decoration:none; opacity:0.55; transition:opacity 0.2s; }
+  .nav-links a:hover { opacity:1; }
+  .btn-nav { background:var(--sage); color:var(--white) !important; opacity:1 !important; padding:10px 22px; border-radius:100px; font-size:13px !important; font-weight:500 !important; transition:background 0.2s !important; }
+  .btn-nav:hover { background:var(--sage-dark) !important; }
+  .nav-hamburger { display:none; flex-direction:column; justify-content:center; gap:5px; width:36px; height:36px; cursor:pointer; background:none; border:none; padding:4px; }
+  .nav-hamburger span { display:block; height:1.5px; width:100%; background:var(--ink); border-radius:2px; transition:transform 0.25s ease, opacity 0.2s ease; transform-origin:center; }
+  .nav-hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity:0; }
+  .nav-hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+  .nav-drawer { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:var(--off-white); z-index:99; flex-direction:column; padding:100px 36px 48px; }
+  .nav-drawer.open { display:flex; }
+  .nav-drawer a { font-family:'Fraunces',serif; font-size:32px; font-weight:300; color:var(--ink); text-decoration:none; padding:16px 0; border-bottom:1px solid rgba(28,43,38,0.07); display:block; opacity:0.7; }
+  .nav-drawer-cta { margin-top:32px; background:var(--sage) !important; color:var(--white) !important; padding:16px 28px !important; border-radius:100px !important; text-align:center !important; font-family:'DM Sans',sans-serif !important; font-size:15px !important; font-weight:500 !important; border-bottom:none !important; opacity:1 !important; }
+
+  /* ARTICLE */
+  .article { max-width:680px; margin:0 auto; padding:0 32px; }
+  .back { display:inline-flex; align-items:center; gap:7px; margin-top:36px; font-size:13px; font-weight:500; color:var(--sage); text-decoration:none; }
+  .back:hover { color:var(--sage-dark); }
+  .art-head { padding:24px 0 8px; }
+  .art-cat { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage); }
+  .art-title { font-family:'Fraunces',serif; font-size:42px; font-weight:300; line-height:1.12; margin:16px 0 18px; text-wrap:balance; }
+  .art-title em { font-style:italic; color:var(--sage); }
+  .art-meta { font-size:13px; color:rgba(28,43,38,0.5); display:flex; flex-wrap:wrap; gap:12px; align-items:center; padding-bottom:24px; border-bottom:1px solid rgba(28,43,38,0.1); }
+
+  .prose { padding:32px 0 8px; }
+  .prose p { font-size:17.5px; font-weight:300; line-height:1.75; color:rgba(28,43,38,0.85); margin-bottom:22px; }
+  .prose h2 { font-family:'Fraunces',serif; font-size:27px; font-weight:400; line-height:1.2; margin:44px 0 16px; text-wrap:balance; }
+  .prose h2 em { font-style:italic; color:var(--sage); }
+  .prose h3 { font-family:'Fraunces',serif; font-size:20px; font-weight:400; margin:28px 0 10px; }
+  .prose strong { font-weight:500; color:var(--ink); }
+  .prose ol, .prose ul { margin:0 0 22px 0; padding-left:0; list-style:none; }
+  .prose ol { counter-reset:step; }
+  .prose ol li { position:relative; padding:0 0 16px 44px; font-size:17px; font-weight:300; line-height:1.7; color:rgba(28,43,38,0.85); counter-increment:step; }
+  .prose ol li::before { content:counter(step); position:absolute; left:0; top:0; width:30px; height:30px; border-radius:50%; background:var(--sage-pale); color:var(--sage-dark); font-family:'Fraunces',serif; font-size:15px; display:flex; align-items:center; justify-content:center; }
+  .prose ol li strong { display:block; margin-bottom:2px; }
+  .pullquote { font-family:'Fraunces',serif; font-style:italic; font-size:24px; font-weight:300; line-height:1.4; color:var(--sage-dark); border-left:3px solid var(--sage); padding:6px 0 6px 24px; margin:32px 0; }
+  .prose a.inline { color:var(--sage); text-decoration:none; border-bottom:1px solid rgba(74,124,111,0.3); }
+  .prose a.inline:hover { border-color:var(--sage); }
+
+  /* Flavor list */
+  .flavor { background:var(--white); border:1px solid rgba(28,43,38,0.1); border-radius:14px; padding:20px 22px; margin-bottom:12px; }
+  .flavor-top { display:flex; align-items:center; gap:10px; margin-bottom:6px; flex-wrap:wrap; }
+  .flavor-name { font-family:'Fraunces',serif; font-size:18px; font-weight:400; }
+  .verdict { font-size:10.5px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:3px 10px; border-radius:100px; }
+  .v-no { background:#F6E4E1; color:var(--red); }
+  .v-maybe { background:#F3EBDD; color:var(--warm-dark); }
+  .v-yes { background:var(--sage-pale); color:var(--sage-dark); }
+  .flavor-d { font-size:14.5px; font-weight:300; line-height:1.6; color:rgba(28,43,38,0.7); }
+
+  /* Flags */
+  .flags { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
+  .flagbox { border-radius:16px; padding:22px 22px; }
+  .flag-green { background:var(--sage-pale); }
+  .flag-red { background:#F8ECEA; }
+  .flag-k { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px; }
+  .flag-green .flag-k { color:var(--sage-dark); }
+  .flag-red .flag-k { color:var(--red); }
+  .flagbox ul { list-style:none; margin:0; padding:0; }
+  .flagbox li { font-size:14px; font-weight:300; line-height:1.5; padding:7px 0 7px 20px; position:relative; color:rgba(28,43,38,0.8); }
+  .flagbox li::before { position:absolute; left:0; top:7px; font-size:13px; font-weight:600; }
+  .flag-green li::before { content:'✓'; color:var(--sage); }
+  .flag-red li::before { content:'✕'; color:var(--red); }
+
+  /* Isca */
+  .isca { background:var(--white); border:1px solid rgba(28,43,38,0.1); border-radius:18px; padding:28px 30px; margin:36px 0; }
+  .isca-k { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage); margin-bottom:8px; }
+  .isca-t { font-family:'Fraunces',serif; font-size:20px; font-weight:400; margin-bottom:14px; }
+  .isca-form { display:flex; gap:10px; }
+  .isca-input { flex:1; background:var(--off-white); border:1px solid rgba(28,43,38,0.15); border-radius:100px; padding:13px 20px; font-size:14px; color:var(--ink); font-family:'DM Sans',sans-serif; outline:none; transition:border-color 0.2s; }
+  .isca-input:focus { border-color:var(--sage); }
+  .isca-btn { background:var(--sage); color:var(--white); padding:13px 22px; border-radius:100px; font-size:14px; font-weight:500; border:none; cursor:pointer; white-space:nowrap; transition:background 0.2s; }
+  .isca-btn:hover { background:var(--sage-dark); }
+  .isca-note { font-size:12px; color:rgba(28,43,38,0.45); margin-top:12px; }
+  .isca-ok { display:none; font-size:14px; color:var(--sage-dark); font-weight:500; }
+  .isca-ok.show { display:block; }
+
+  /* End CTA */
+  .endcta { background:var(--ink); border-radius:20px; padding:40px 36px; margin:44px 0 8px; text-align:center; }
+  .endcta h3 { font-family:'Fraunces',serif; font-size:26px; font-weight:300; color:var(--off-white); line-height:1.2; margin-bottom:10px; }
+  .endcta h3 em { font-style:italic; color:var(--sage-light); }
+  .endcta p { font-size:15px; font-weight:300; color:rgba(250,248,245,0.6); margin-bottom:22px; max-width:440px; margin-left:auto; margin-right:auto; }
+  .btn-light { background:var(--off-white); color:var(--ink); padding:14px 28px; border-radius:100px; font-size:14px; font-weight:500; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:background 0.2s; }
+  .btn-light:hover { background:var(--warm); }
+
+  footer { background:var(--ink); border-top:1px solid rgba(255,255,255,0.06); padding:40px 0; margin-top:60px; }
+  .footer-inner { max-width:1140px; margin:0 auto; padding:0 60px; display:flex; align-items:center; justify-content:space-between; }
+  .footer-logo-word { font-family:'Fraunces',serif; font-size:20px; font-weight:300; color:var(--off-white); opacity:0.7; }
+  .footer-links { display:flex; gap:28px; list-style:none; }
+  .footer-links a { font-size:13px; color:rgba(250,248,245,0.35); text-decoration:none; }
+  .footer-links a:hover { color:rgba(250,248,245,0.7); }
+
+  @media (max-width:768px) {
+    .nav-inner { padding:16px 24px; }
+    .nav-links { display:none; }
+    .nav-hamburger { display:flex; }
+    .art-title { font-size:31px; }
+    .prose p { font-size:16.5px; }
+    .flags { grid-template-columns:1fr; }
+    .isca-form { flex-direction:column; }
+    .isca-input, .isca-btn { width:100%; border-radius:12px; }
+    .footer-inner { padding:0 24px; flex-direction:column; gap:16px; text-align:center; }
+  }
+</style>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="description" content="Nem toda vaga 'remote' aceita quem mora no Brasil. Os 5 tipos de remoto, os sinais que entregam cada um e um método de 30 segundos pra filtrar antes de perder tempo aplicando.">
+<meta property="og:title" content="&quot;Remote&quot; que não é remote: como filtrar as vagas que aceitam quem mora no Brasil">
+<meta property="og:description" content="Os 5 tipos de vaga remota, os green e red flags de cada anúncio e o método de 30 segundos pra não perder tempo aplicando pra vaga que nunca ia te aceitar.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://vagas-marketing.alvo.agency/blog/remote-que-nao-e-remote.html">
+<meta property="og:image" content="https://vagas-marketing.alvo.agency/og-image.png">
+<meta property="article:published_time" content="2026-09-04">
+<meta property="article:author" content="Rodrigo Kato">
+<link rel="canonical" href="https://vagas-marketing.alvo.agency/blog/remote-que-nao-e-remote.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"Remote\" que não é remote: como filtrar as vagas que aceitam quem mora no Brasil",
+  "description": "Os 5 tipos de vaga remota, os sinais que entregam cada um e um método de 30 segundos pra filtrar antes de aplicar.",
+  "image": "https://vagas-marketing.alvo.agency/og-image.png",
+  "datePublished": "2026-09-04",
+  "dateModified": "2026-09-04",
+  "inLanguage": "pt-BR",
+  "author": { "@type": "Person", "name": "Rodrigo Kato", "url": "https://alvo.agency" },
+  "publisher": { "@type": "Organization", "name": "Alvo", "url": "https://alvo.agency" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://vagas-marketing.alvo.agency/blog/remote-que-nao-e-remote.html" }
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../" class="nav-logo">
+      <svg width="24" height="24" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" stroke="#4A7C6F" stroke-width="1.5" fill="none"/>
+        <circle cx="24" cy="24" r="6" fill="#2D5246"/>
+        <line x1="24" y1="4" x2="24" y2="14" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="24" y1="34" x2="24" y2="44" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="4" y1="24" x2="14" y2="24" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="34" y1="24" x2="44" y2="24" stroke="#4A7C6F" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="nav-logo-word">alvo</span>
+      <span class="nav-logo-tag">Blog</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="./">Todos os posts</a></li>
+      <li><a href="../#quem-sou">Quem sou eu</a></li>
+      <li><a href="../#curso" class="btn-nav">Entrar na lista</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-drawer" id="nav-drawer">
+  <a href="./">Todos os posts</a>
+  <a href="../#quem-sou">Quem sou eu</a>
+  <a href="../#curso" class="nav-drawer-cta">Entrar na lista →</a>
+</div>
+
+<article>
+  <div class="article">
+    <a href="./" class="back">← Todos os posts</a>
+    <div class="art-head">
+      <span class="art-cat">Onde estão as vagas</span>
+      <h1 class="art-title">"Remote" que não é remote: como filtrar as vagas que <em>aceitam quem mora no Brasil</em></h1>
+      <div class="art-meta"><span>por Rodrigo Kato</span><span>·</span><time datetime="2026-09-04">4 de setembro de 2026</time><span>·</span><span>6 min de leitura</span></div>
+    </div>
+
+    <div class="prose">
+      <p>Você filtra por "Remote", acha 40 vagas de marketing, aplica em todas — e some. Ou pior: chega na primeira tela do formulário e leva a pergunta que encerra o assunto: <em>"Are you legally authorized to work in the United States?"</em></p>
+      <p>Não é você. É que <strong>"remote" virou a palavra mais ambígua dos job boards</strong>. Ela é usada pra pelo menos cinco coisas diferentes, e só duas delas servem pra quem mora no Brasil.</p>
+      <p>Esse post é o filtro. No fim dele você vai bater o olho num anúncio e saber em 30 segundos se vale o seu tempo.</p>
+
+      <h2>O erro que faz você <em>queimar semanas</em></h2>
+      <p>O erro é tratar "remote" como uma coisa só e aplicar no volume, torcendo pra dar certo. O resultado é um funil entupido de vaga que nunca poderia te contratar — e a sensação falsa de que "ninguém quer brasileiro".</p>
+      <p>Querem. Só que a vaga certa tem marcas específicas no anúncio, e a errada também. Aprender a ler essas marcas é o que mais economiza tempo no começo.</p>
+      <div class="pullquote">Não existe "vaga remota". Existem cinco tipos de vaga remota — e você só compete em dois deles.</div>
+
+      <h2>Os 5 tipos de <em>"remote"</em></h2>
+
+      <div class="flavor">
+        <div class="flavor-top"><span class="flavor-name">1. Remote — US only</span><span class="verdict v-no">Não serve</span></div>
+        <p class="flavor-d">Aparece como "Remote (US)", "Remote — United States" ou só "Remote" com a empresa deixando claro que contrata sob CLT americana. Exige autorização pra trabalhar nos EUA. É a maioria das vagas do LinkedIn — e a principal fonte de frustração.</p>
+      </div>
+      <div class="flavor">
+        <div class="flavor-top"><span class="flavor-name">2. Remote — mas com raio de escritório</span><span class="verdict v-no">Não serve</span></div>
+        <p class="flavor-d">"Remote (hybrid)", "Remote — must be within commuting distance of NYC". É home office de quem mora perto do escritório. Não é remoto de verdade.</p>
+      </div>
+      <div class="flavor">
+        <div class="flavor-top"><span class="flavor-name">3. Remote — restrito a uma lista de países</span><span class="verdict v-maybe">Talvez</span></div>
+        <p class="flavor-d">A empresa tem entidade legal ou contrato em alguns países específicos e lista quais. Vale checar se o Brasil está na lista — muitas empresas incluem, justamente pelo fuso e pelo custo. Se não estiver, pula.</p>
+      </div>
+      <div class="flavor">
+        <div class="flavor-top"><span class="flavor-name">4. Remote — restrito por fuso horário</span><span class="verdict v-yes">Serve</span></div>
+        <p class="flavor-d">"Remote — must overlap 4h with EST" ou "CET ±3". Aqui o critério é <strong>sobreposição de horário, não país</strong> — e o Brasil tem um dos melhores fusos do mundo pra trabalhar com os EUA. Esse é o seu terreno.</p>
+      </div>
+      <div class="flavor">
+        <div class="flavor-top"><span class="flavor-name">5. Remote — global / anywhere</span><span class="verdict v-yes">Serve</span></div>
+        <p class="flavor-d">"Fully remote, work from anywhere", "globally distributed", "we hire contractors worldwide". É o alvo principal: a empresa já resolveu como contratar e pagar gente fora do país dela.</p>
+      </div>
+
+      <h2>Os sinais que <em>entregam o jogo</em></h2>
+      <p>Antes de ler o anúncio inteiro, procure por estes termos. Eles quase sempre aparecem — e dizem mais que o título da vaga:</p>
+
+      <div class="flags">
+        <div class="flagbox flag-green">
+          <div class="flag-k">Green flags</div>
+          <ul>
+            <li>"Work from anywhere" / "worldwide" / "global"</li>
+            <li>"LatAm" ou "Latin America" citados</li>
+            <li>"Contractor" / "B2B" / "independent contractor"</li>
+            <li>Menção a EOR: Deel, Remote.com, Oyster, Velocity</li>
+            <li>"Async" / "distributed team" / "remote-first"</li>
+            <li>Requisito de <b>fuso</b> (overlap) em vez de país</li>
+          </ul>
+        </div>
+        <div class="flagbox flag-red">
+          <div class="flag-k">Red flags</div>
+          <ul>
+            <li>"Must be authorized to work in the US/UK"</li>
+            <li>"No visa sponsorship" + vaga sediada em país</li>
+            <li>"W-2" (é vínculo empregatício americano)</li>
+            <li>Benefícios locais: 401(k), health insurance, PTO estadual</li>
+            <li>Faixa salarial por estado americano</li>
+            <li>"Hybrid" / "must reside in" / "commuting distance"</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>Um detalhe que engana muita gente: <strong>benefício local é o sinal mais honesto do anúncio</strong>. Se a vaga oferece 401(k) e plano de saúde americano, ela foi desenhada pra um funcionário americano. Nenhum texto bonito de "we're global" muda isso.</p>
+
+      <h2>O método dos <em>30 segundos</em></h2>
+      <p>Na prática, é isso — nessa ordem:</p>
+      <ol>
+        <li><strong>Olhe o campo de localização, não o título.</strong> O título quase sempre diz "Remote". O campo de location é que diz "United States", "EMEA" ou "Worldwide".</li>
+        <li><strong>Ctrl+F nos termos da tabela acima.</strong> Trinta segundos e você já sabe em qual dos 5 tipos a vaga cai.</li>
+        <li><strong>Abra o formulário antes de escrever qualquer coisa.</strong> O ATS entrega a verdade: se a primeira pergunta é sobre autorização de trabalho no país, ou se o dropdown de país nem tem Brasil, feche a aba.</li>
+        <li><strong>Cheque a página de carreiras da empresa.</strong> Empresas remote-first sérias costumam ter uma seção "where we hire" listando os países. É a fonte mais confiável — mais que o anúncio.</li>
+        <li><strong>Na dúvida, pergunte antes de investir.</strong> Uma linha curta pro recrutador ("I'm based in Brazil and work as a contractor — is that compatible with this role?") economiza dias. Não é fraqueza: é qualificação, igual você faria com um lead.</li>
+      </ol>
+
+      <p>Aplicar em 10 vagas do tipo 4 e 5 rende infinitamente mais que aplicar em 100 vagas misturadas. É o mesmo princípio de mídia paga que você já usa todo dia: <strong>segmentação vence volume</strong>.</p>
+
+      <div class="isca">
+        <div class="isca-k">Não perca os próximos</div>
+        <div class="isca-t">Receba os próximos posts (e o aviso do curso) por e-mail</div>
+        <form class="isca-form" id="isca-form" novalidate>
+          <input type="email" class="isca-input" id="isca-email" placeholder="seu@email.com" autocomplete="email" required />
+          <button type="submit" class="isca-btn" id="isca-btn">Quero receber</button>
+        </form>
+        <p class="isca-note" id="isca-note">Sem spam. Só os posts e o aviso quando o curso/mentoria abrir.</p>
+        <p class="isca-ok" id="isca-ok">Pronto — você está na lista. 🎯</p>
+      </div>
+
+      <h2>E quando a vaga é a certa?</h2>
+      <p>Aí o filtro deixa de ser o problema e o gargalo vira outro: o seu perfil precisa falar a língua daquele mercado, e a entrevista vai ser em inglês. Se é a parte de <em>falar</em> que te trava, eu estou montando um treino de conversação focado só em entrevista e reunião de marketing e dados — dá pra entrar na lista em <a class="inline" href="https://learn-english.alvo.agency" target="_blank" rel="noopener">learn-english.alvo.agency</a>.</p>
+      <p>Se quiser o contexto de como eu cheguei nesse caminho, comecei por aqui: <a class="inline" href="o-caminho-que-eu-fiz.html">de agência no Brasil a trabalhar em dólar</a>.</p>
+
+      <div class="endcta">
+        <h3>Quer fazer esse caminho <em>comigo junto?</em></h3>
+        <p>O curso e a mentoria vêm depois dos posts: revisão de perfil, mock interviews em inglês e acompanhamento até a oferta. Entre na lista e seja avisado no lançamento.</p>
+        <a href="../#curso" class="btn-light">
+          Entrar na lista do curso
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="#1C2B26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo-word">alvo</span>
+    <ul class="footer-links">
+      <li><a href="./">Blog</a></li>
+      <li><a href="../#quem-sou">Quem sou eu</a></li>
+      <li><a href="../#curso">Curso &amp; mentoria</a></li>
+      <li><a href="https://alvo.agency" target="_blank" rel="noopener">Alvo Agency</a></li>
+    </ul>
+    <span style="font-size:12px;color:rgba(250,248,245,0.2);">© 2026 Alvo.</span>
+  </div>
+</footer>
+
+<script>
+  function toggleNav() {
+    document.getElementById('nav-hamburger').classList.toggle('open');
+    document.getElementById('nav-drawer').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('nav-drawer').classList.contains('open') ? 'hidden' : '';
+  }
+
+  const COURSE_FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  const iForm = document.getElementById('isca-form');
+  const iEmail = document.getElementById('isca-email');
+  const iBtn = document.getElementById('isca-btn');
+  const iNote = document.getElementById('isca-note');
+  const iOk = document.getElementById('isca-ok');
+  function iscaDone() { iForm.style.display='none'; iNote.style.display='none'; iOk.classList.add('show'); }
+  iForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const email = iEmail.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { iEmail.style.borderColor='#C0544A'; return; }
+    iEmail.style.borderColor='';
+    if (COURSE_FORMSPREE_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) { console.warn('[isca] endpoint não configurado — nada enviado.'); iscaDone(); return; }
+    iBtn.disabled=true; iBtn.textContent='Enviando…';
+    try {
+      const res = await fetch(COURSE_FORMSPREE_ENDPOINT, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify({ email:email, source:'vagas-marketing.alvo.agency/blog/remote-que-nao-e-remote', list:'Vagas Curso/Mentoria — Waitlist' }) });
+      if (res.ok) { iscaDone(); } else { throw new Error('HTTP '+res.status); }
+    } catch(err) { console.error('[isca] falha:', err); iBtn.disabled=false; iBtn.textContent='Quero receber'; iNote.textContent='Algo deu errado. Tente de novo.'; }
+  });
+</script>
+</body>
+</html>
