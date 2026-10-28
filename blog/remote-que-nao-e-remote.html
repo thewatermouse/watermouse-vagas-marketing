@@ -314,7 +314,7 @@
     document.body.style.overflow = document.getElementById('nav-drawer').classList.contains('open') ? 'hidden' : '';
   }
 
-  const COURSE_FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  const COURSE_FORMSPREE_ENDPOINT = 'https://formsubmit.co/ajax/digo@thewatermouse.com';
   const iForm = document.getElementById('isca-form');
   const iEmail = document.getElementById('isca-email');
   const iBtn = document.getElementById('isca-btn');
@@ -329,7 +329,7 @@
     if (COURSE_FORMSPREE_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) { console.warn('[isca] endpoint não configurado — nada enviado.'); iscaDone(); return; }
     iBtn.disabled=true; iBtn.textContent='Enviando…';
     try {
-      const res = await fetch(COURSE_FORMSPREE_ENDPOINT, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify({ email:email, source:'vagas-marketing.thewatermouse.com/blog/remote-que-nao-e-remote', list:'Vagas Curso/Mentoria — Waitlist' }) });
+      const res = await fetch(COURSE_FORMSPREE_ENDPOINT, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body:JSON.stringify({ email:email, _subject:'Novo e-mail: Vagas (blog)', _captcha:'false', source:'vagas-marketing.thewatermouse.com/blog/remote-que-nao-e-remote', list:'Vagas Curso/Mentoria — Waitlist' }) });
       if (res.ok) { iscaDone(); } else { throw new Error('HTTP '+res.status); }
     } catch(err) { console.error('[isca] falha:', err); iBtn.disabled=false; iBtn.textContent='Quero receber'; iNote.textContent='Algo deu errado. Tente de novo.'; }
   });

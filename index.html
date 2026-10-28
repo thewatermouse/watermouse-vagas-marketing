@@ -685,13 +685,11 @@
   });
 
   // ─────────────────────────────────────────────────────────────
-  //  COURSE / MENTORIA WAITLIST — Formspree
-  //  1. Crie uma conta grátis em https://formspree.io
-  //  2. Crie um form (separado do da learn-english), copie o endpoint
-  //  3. Cole abaixo no lugar de 'https://formspree.io/f/YOUR_FORM_ID'
-  //  Enquanto o placeholder estiver aqui, o form mostra o sucesso mas NÃO envia.
+  //  COURSE / MENTORIA WAITLIST — FormSubmit (sem conta)
+  //  Os envios chegam em digo@thewatermouse.com. No primeiro envio, o FormSubmit
+  //  manda um e-mail de ativação ("Activate Form"); clique nele uma vez.
   // ─────────────────────────────────────────────────────────────
-  const COURSE_FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  const COURSE_FORMSPREE_ENDPOINT = 'https://formsubmit.co/ajax/digo@thewatermouse.com';
 
   const cForm   = document.getElementById('course-form');
   const cEmail  = document.getElementById('course-email');
@@ -729,6 +727,8 @@
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: email,
+          _subject: 'Novo e-mail: Vagas (curso/mentoria)',
+          _captcha: 'false',
           source: 'vagas-marketing.thewatermouse.com',
           list: 'Vagas Curso/Mentoria — Waitlist'
         })
