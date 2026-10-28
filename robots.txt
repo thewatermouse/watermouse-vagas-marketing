@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vagas-marketing.alvo.agency/sitemap.xml
+Sitemap: https://vagas-marketing.thewatermouse.com/sitemap.xml
