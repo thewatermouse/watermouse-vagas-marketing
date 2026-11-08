@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Google Tag Manager com Consent Mode v2: consentimento NEGADO por padrao, sem cookies ate o aceite. GA4 e eventos ficam no container GTM. -->
+<script>
+(function(){
+  var GTM_ID = 'GTM-T665625S';
+  var ADVANCED = true; // true: GTM carrega sempre, com tudo negado (pings sem cookies); false: so depois do aceite
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  var ok = false;
+  try { ok = localStorage.getItem('wm_cookie_consent') === 'accepted'; } catch(e){}
+  var g = ok ? 'granted' : 'denied';
+  gtag('consent', 'default', {ad_storage: g, ad_user_data: g, ad_personalization: g, analytics_storage: g, wait_for_update: 500});
+  gtag('set', 'ads_data_redaction', true);
+  window.loadWatermouseGA = function(){
+    if (window.__watermouseGA) return; window.__watermouseGA = true;
+    dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(s);
+  };
+  window.wmConsentGrant = function(){
+    gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'});
+    window.loadWatermouseGA();
+  };
+  if (ADVANCED || ok) window.loadWatermouseGA();
+  document.addEventListener('DOMContentLoaded', function(){
+    var o1 = window.wmCookie;
+    if (typeof o1 === 'function') { window.wmCookie = function(a){ o1.apply(this, arguments); if (a) window.wmConsentGrant(); }; }
+    var o2 = window.cookieAccept;
+    if (typeof o2 === 'function') { window.cookieAccept = function(){ o2.apply(this, arguments); window.wmConsentGrant(); }; }
+  });
+})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vaga de Marketing &amp; Growth no Exterior — em dólar | por Alvo</title>
@@ -742,6 +774,30 @@
       cError.classList.add('show');
     }
   });
+</script>
+
+<!-- Banner de cookies (Consent Mode v2: negado por padrão, sem cookies até o aceite) -->
+<style>
+#cookie-banner{position:fixed;left:14px;right:14px;bottom:14px;z-index:99999;max-width:640px;margin:0 auto;background:#fff;color:#1a1a1a;border:1px solid rgba(0,0,0,.15);border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.18);padding:14px 16px;display:none;font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;opacity:0;transition:opacity .4s}
+#cookie-banner.visible{display:block;opacity:1}
+#cookie-banner p{margin:0 0 10px}
+#cookie-banner a{color:inherit;text-decoration:underline}
+#cookie-banner .ca{display:flex;gap:8px;justify-content:flex-end}
+#cookie-banner button{font:inherit;font-weight:600;border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid #1a1a1a;background:#fff;color:#1a1a1a}
+#cookie-banner button.ok{background:#1a1a1a;color:#fff}
+</style>
+<div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+  <p>Usamos cookies para entender como o site é usado e melhorá-lo. Nada é vendido a terceiros. Veja a <a href="https://thewatermouse.com/privacidade/">política de privacidade</a>.</p>
+  <div class="ca"><button type="button" onclick="cookieDecline()">Recusar</button><button type="button" class="ok" onclick="cookieAccept()">Aceitar</button></div>
+</div>
+<script>
+(function(){
+  var c=null; try{c=localStorage.getItem('wm_cookie_consent');}catch(e){}
+  if(!c){var b=document.getElementById('cookie-banner'); if(b) setTimeout(function(){b.classList.add('visible');},600);}
+})();
+function hideCookieBanner(){var b=document.getElementById('cookie-banner'); if(b){b.classList.remove('visible'); setTimeout(function(){b.style.display='none';},450);}}
+function cookieAccept(){try{localStorage.setItem('wm_cookie_consent','accepted');}catch(e){} hideCookieBanner();}
+function cookieDecline(){try{localStorage.setItem('wm_cookie_consent','declined');}catch(e){} hideCookieBanner();}
 </script>
 </body>
 </html>
